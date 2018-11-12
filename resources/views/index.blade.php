@@ -1,3 +1,4 @@
+@extends('layouts.plantilla')
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,13 +9,15 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Social Pets</title>
+    @section('title', 'Social Pets')
 
     <link rel="shortcut icon" type="image/x-icon" href="img/logo.ico"/>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- Style css -->
+    <link href="/css/style.css" rel="stylesheet">
 
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -48,10 +51,10 @@
               <a class="nav-link js-scroll-trigger" href="#about">Sobre nosotros</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#redes">Nuestras redes sociales</a>
+              <a class="nav-link js-scroll-trigger" href="#contact-form-section">Contactanos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#contact-form-section">Contactanos</a>
+              <a class="nav-link js-scroll-trigger" href="#redes">Nuestras redes sociales</a>
             </li>
           </ul>
         </div>
@@ -87,45 +90,6 @@
         </div>
       </div>
     </section>
-
-    <section id="redes">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 text-center">
-            <h2 class="section-heading">Visita nuestras redes sociales</h2>
-            <hr class="my-4">
-          </div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-3 col-md-6 text-center">
-            <div class="service-box mt-5 mx-auto">
-              <a href="https://www.twitter.com" class="icoTwitter" title="Twitter"><i class="fa fa-twitter fa-5x"></i></a>
-              <h3 class="mb-3">Twitter</h3>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 text-center">
-            <div class="service-box mt-5 mx-auto">
-              <a href="https://www.facebook.com" class="icoFacebook" title="Facebook"><i class="fa fa-facebook fa-5x"></i></a>
-              <h3 class="mb-3">Facebook</h3>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 text-center">
-            <div class="service-box mt-5 mx-auto">
-              <a href="#" class="icoInstagram" title="Instagran"><i class="fa fa-instagram fa-5x"></i></a>
-              <h3 class="mb-3">Instagram</h3>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 text-center">
-            <div class="service-box mt-5 mx-auto">
-              <a href="https://www.youtube.com" class="icoYoutube" title="Youtube"><i class="fa fa-youtube fa-5x"></i></a>
-              <h3 class="mb-3">Youtube</h3>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <section id="contact-form-section" class="bg-dark text-white">
     <div class="container">
       <div class="row">
@@ -145,13 +109,14 @@
                 </div><!--End col -->
                 <div class="col-md-12">
                 
-                <form id="contactForm" name="contactform" data-toggle="validator" class="popup-form">
+                <form id="contactForm" name="contactform" data-toggle="validator" class="popup-form" action="/enviardatos" method="post" onsubmit="return alert('Se han enviado los datos');">
+                  @csrf
                         <div class="row">
                           <div id="msgContactSubmit" class="hidden"></div>
                           
                           <div class="form-group col-sm-6">
                             <div class="help-block with-errors"></div>
-                            <input name="fname" id="fname" placeholder="Tu nombre*" class="form-control" type="text" required data-error="Por favor ingresa tu nombre"> 
+                            <input name="nombre" id="nombre" placeholder="Tu nombre*" class="form-control" type="text" required data-error="Por favor ingresa tu nombre"> 
                             <div class="input-group-icon"><i class="fa fa-user"></i></div>
                           </div><!-- end form-group -->
                           <div class="form-group col-sm-6">
@@ -161,17 +126,12 @@
                           </div><!-- end form-group -->
                           <div class="form-group col-sm-6">
                             <div class="help-block with-errors"></div>
-                            <input name="phone" id="phone" placeholder="Teléfono*" class="form-control" type="text" required data-error="Por favor ingresa tu número de teléfono">
-                            <div class="input-group-icon"><i class="fa fa-phone"></i></div> 
-                          </div><!-- end form-group -->
-                          <div class="form-group col-sm-6">
-                            <div class="help-block with-errors"></div>
-                            <input name="subject" id="subject" placeholder="Asunto*" class="form-control" type="text" required data-error="Por favor ingresa el asunto">
+                            <input name="asunto" id="asunto" placeholder="Asunto*" class="form-control" type="text" required data-error="Por favor ingresa el asunto">
                             <div class="input-group-icon"><i class="fa fa-book"></i></div> 
                           </div><!-- end form-group -->
                           <div class="form-group col-sm-12">
                             <div class="help-block with-errors"></div>
-                            <textarea rows="3" name="message" id="message" placeholder="Escribe tu comentario aquí*" class="form-control" required data-error="Por favor ingresa un mensaje"></textarea>
+                            <textarea rows="3" name="mensaje" id="mensaje" placeholder="Escribe tu comentario aquí*" class="form-control" required data-error="Por favor ingresa un mensaje"></textarea>
                             <div class="textarea input-group-icon"><i class="fa fa-pencil"></i></div>
                           </div><!-- end form-group -->
                           
@@ -192,7 +152,7 @@
       </div><!--End row -->
     </div><!--End container -->
   </section>
-    </section>
+  @include('includes.footer')
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

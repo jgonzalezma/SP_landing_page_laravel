@@ -9,6 +9,10 @@ ul.social-network li {
 	margin: 0 5px;
 }
 
+#redes{
+	height: 50px;
+}
+
 .social-network a.icoRss:hover {
 	background-color: #F56505;
 }
